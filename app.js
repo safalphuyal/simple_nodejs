@@ -41,6 +41,7 @@ app.get("/getcontent", function(req, res){
             res.send("Error while retriving data")
         } 
     }
+    getUsers()
 
 })
 
