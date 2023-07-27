@@ -1,6 +1,8 @@
 const express = require('express');
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const rateLimit = require("express-rate-limit");
+const helmet = require("helmet");
 
 const dbConfig = require("./config/db");
 
@@ -11,6 +13,18 @@ const Model = mongoose.model("testcollection", testSchema);
 
 const app = express()
 
+
+const limiter = rateLimit({
+    windowMs : 2880 * 60 * 1000,  // block for 2880 minutes 
+    max: 16,   // block after 16 requests
+    message: "You have reached maximum retries. Please try again later",
+    standardHeaders: false,
+    legacyHeaders: false,
+})
+
+
+app.use(limiter);
+app.use(helmet());
 
 mongoose.set("strictQuery", true);
 app.use(bodyParser.urlencoded({ extended: true }));
