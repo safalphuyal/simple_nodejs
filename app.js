@@ -12,8 +12,8 @@ const Model = mongoose.model("testcollection", testSchema);
 
 
 const app = express()
-
-
+app.enable('trust proxy'); 
+app.disable('x-powered-by');
 const limiter = rateLimit({
     windowMs : 2880 * 60 * 1000,  // block for 2880 minutes 
     max: 16,   // block after 16 requests
@@ -25,6 +25,7 @@ const limiter = rateLimit({
 
 app.use(limiter);
 app.use(helmet());
+
 
 mongoose.set("strictQuery", true);
 app.use(bodyParser.urlencoded({ extended: true }));
