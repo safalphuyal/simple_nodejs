@@ -46,6 +46,10 @@ app.get("/", function(req, res){
     res.send("Hello World");
 })
 
+app.get("/getip", function(req, res){
+    res.send(req.ip)
+    
+})
 
 app.get("/getcontent", function(req, res){
     async function getUsers(){
