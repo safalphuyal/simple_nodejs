@@ -12,7 +12,7 @@ const Model = mongoose.model("testcollection", testSchema);
 
 
 const app = express()
-app.enable('trust proxy'); 
+app.set('trust proxy', 1)
 app.disable('x-powered-by');
 const limiter = rateLimit({
     windowMs : 2880 * 60 * 1000,  // block for 2880 minutes 
