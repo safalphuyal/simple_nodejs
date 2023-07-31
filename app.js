@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const rateLimit = require("express-rate-limit");
 const helmet = require("helmet");
+require('dotenv').config()
 
 const dbConfig = require("./config/db");
 
